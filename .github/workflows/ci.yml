@@ -49,7 +49,7 @@ jobs:
         run: docker compose exec -T php bin/phpunit
       -
         name: Run PHP Linters
-        run: docker compose exec -T php composer lint
+        run: docker compose exec -T php ./vendor/bin/php-cs-fixer fix --dry-run --diff && ./vendor/bin/psalm --diff
       -
         name: Doctrine Schema Validator
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
