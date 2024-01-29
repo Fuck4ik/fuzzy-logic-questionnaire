@@ -1,49 +1,20 @@
-# Symfony Docker
-
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
-with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
-
 ![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
 
-## Getting Started
+## Простая система тестирования
 
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --no-cache` to build fresh images
-3. Run `docker compose up --pull always -d --wait` to start the project
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+Поддерживающую вопросы с нечеткой логикой и возможностью выбора нескольких вариантов ответа. В качестве пользовательского интерфейса используется cli среда.
 
-## Features
+Что такое вопросы с нечеткой логикой?
 
-* Production, development and CI ready
-* Just 1 service by default
-* Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://github.com/dunglas/frankenphp/blob/main/docs/worker.md) (automatically enabled in prod mode)
-* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
-* Automatic HTTPS (in dev and prod)
-* HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
-* Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
-* [Vulcain](https://vulcain.rocks) support
-* Native [XDebug](docs/xdebug.md) integration
-* Super-readable configuration
+“2 + 2 = ”
+1. 4
+2. 3 + 1
+3. 10
 
-**Enjoy!**
+Правильными ответами тут будут 1 ИЛИ 2 ИЛИ (1 И 2). При этом любые другие комбинации (например, 1 И 3) не будут считаться верными, несмотря на то, что содержат правильный ответ.
 
-## Docs
+## Запуск
 
-1. [Build options](docs/build.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using a Makefile](docs/makefile.md)
-8. [Troubleshooting](docs/troubleshooting.md)
-9. [Updating the template](docs/updating.md)
-
-## License
-
-Symfony Docker is available under the MIT License.
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+1. Устанавливаем докер если его нет, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
+2. Запускаем командой `make start`
+> Остановить контейнеры после использования `make stop`, полный перечень команд смотреть в `make help`

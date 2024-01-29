@@ -39,26 +39,19 @@ jobs:
         name: Start services
         run: docker compose up --wait --no-build
       -
-        name: Check HTTP reachability
-        run: curl -v -o /dev/null http://localhost
-      -
-        name: Check HTTPS reachability
-        run: curl -vk -o /dev/null https://localhost
-      -
         name: Create test database
-        if: false # Remove this line if Doctrine ORM is installed
         run: docker compose exec -T php bin/console -e test doctrine:database:create
       -
         name: Run migrations
-        if: false # Remove this line if Doctrine Migrations is installed
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
-        if: false # Remove this line if PHPUnit is installed
         run: docker compose exec -T php bin/phpunit
       -
+        name: Run PHP Linters
+        run: docker compose exec -T php composer lint
+      -
         name: Doctrine Schema Validator
-        if: false # Remove this line if Doctrine ORM is installed
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
   lint:
     name: Docker Lint

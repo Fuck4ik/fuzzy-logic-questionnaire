@@ -19,12 +19,16 @@ help: ## Outputs this help screen
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 build: ## Builds the Docker images
-	@$(DOCKER_COMP) build --pull --no-cache
+	@$(DOCKER_COMP) build
 
 up: ## Start the docker hub in detached mode (no logs)
 	@$(DOCKER_COMP) up --detach
 
-start: build up ## Build and start the containers
+start: build up app-start ## Build and start the containers
+
+app-start: ## Start questionnaire app
+	@$(eval c ?=)
+	@$(SYMFONY) app:start $(c)
 
 down: ## Stop the docker hub
 	@$(DOCKER_COMP) down --remove-orphans
