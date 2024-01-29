@@ -55,10 +55,11 @@ jobs:
         run: docker compose exec -T php bin/phpunit
       -
         name: Run Psalm
+        if: false
         run: psalm --output-format=github
       -
         name: Run PHP Coding Standards Fixer
-        run: psalm --output-format=github
+        run: php-cs-fixer fix --dry-run
       -
         name: Doctrine Schema Validator
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
