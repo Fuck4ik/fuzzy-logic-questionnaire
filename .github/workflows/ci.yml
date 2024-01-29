@@ -55,10 +55,11 @@ jobs:
         run: docker compose exec -T php bin/phpunit
       -
         name: Run Psalm
-        if: false
+        if: false # remove when fixed permissions problem
         run: psalm --output-format=github
       -
         name: Run PHP Coding Standards Fixer
+        if: false # remove when fixed permissions problem
         run: php-cs-fixer fix --dry-run
       -
         name: Doctrine Schema Validator
